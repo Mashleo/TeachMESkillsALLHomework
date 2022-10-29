@@ -15,12 +15,14 @@ namespace Homework2510.Controllers
     public class DataFileController : ControllerBase
     {
         private readonly IConfiguration _config;
+        private readonly IWorkWithFile _iworkWithFile;
         private readonly string _name;
-        public DataFileController(IConfiguration config)
+        public DataFileController(IConfiguration config, IWorkWithFile iWorkWithFile)
         {
-           
+
             _config = config;
             _name = _config.GetValue<string>("DataFile");
+            _iworkWithFile = iWorkWithFile;
         }
         [HttpGet("Get_Name")]
         public string GetName()
@@ -31,13 +33,13 @@ namespace Homework2510.Controllers
         public string GetTextFromFile()
         {
             
-           return WorkWithFile.ReturnTextFronFile(_name);
+           return _iworkWithFile.ReturnTextFronFile(_name);
         }
         [HttpGet("Get_File_From_JSON")]
         public List<Cars> GetFileFromJson()
         {
 
-            return WorkWithFile.ReturnListFromText(_name);
+            return _iworkWithFile.ReturnListFromText(_name);
         }
     }
 }

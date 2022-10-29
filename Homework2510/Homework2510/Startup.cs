@@ -1,3 +1,4 @@
+using Homework2510.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,8 @@ namespace Homework2510
         {
             services.AddControllers();
             services.AddOpenApiDocument();
+            
+            services.AddScoped<IWorkWithFile, WorkWithFile>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

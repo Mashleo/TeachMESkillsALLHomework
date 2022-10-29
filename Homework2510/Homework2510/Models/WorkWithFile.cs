@@ -8,9 +8,9 @@ using System.IO;
 
 namespace Homework2510.Models
 {
-    public  static class WorkWithFile
+    public   class WorkWithFile: IWorkWithFile
     {
-        public static string ReturnTextFronFile(string path)
+        public  string ReturnTextFronFile(string path)
         {
             FileStream stream = File.Open(path, FileMode.OpenOrCreate);
            
@@ -23,7 +23,7 @@ namespace Homework2510.Models
             stream.Close();
             return a;
         }
-        public static List<Cars> ReturnListFromText(string path)
+        public List<Cars> ReturnListFromText(string path)
         {
             FileStream stream = File.Open(path, FileMode.OpenOrCreate);
             StreamReader strRead = new StreamReader(stream);
@@ -33,5 +33,13 @@ namespace Homework2510.Models
         }
 
     }
-    
+    public interface IWorkWithFile
+    {
+        public  string ReturnTextFronFile(string path);
+        public  List<Cars> ReturnListFromText(string path);
+
+
+    }
+
+
 }
