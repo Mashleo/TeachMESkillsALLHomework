@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Homework2510.Interfaces;
 using Homework2510.Models;
 
 namespace Homework2510.Controllers
@@ -14,31 +14,31 @@ namespace Homework2510.Controllers
     [ApiController]
     public class DataFileController : ControllerBase
     {
-        private readonly IConfiguration _config;
+
         private readonly IWorkWithFile _iworkWithFile;
         private readonly string _name;
+
         public DataFileController(IConfiguration config, IWorkWithFile iWorkWithFile)
         {
-
-            _config = config;
-            _name = _config.GetValue<string>("DataFile");
+            _name = config.GetValue<string>("DataFile");
             _iworkWithFile = iWorkWithFile;
         }
-        [HttpGet("Get_Name")]
+
+        [HttpGet("Get-Name")]
         public string GetName()
         {
             return _name;
         }
-        [HttpGet("Get_Text_From_file")]
+
+        [HttpGet("Get-Text-From-file")]
         public string GetTextFromFile()
         {
-            
-           return _iworkWithFile.ReturnTextFronFile(_name);
+            return _iworkWithFile.ReturnTextFronFile(_name);
         }
-        [HttpGet("Get_File_From_JSON")]
+
+        [HttpGet("Get-File-From-JSON")]
         public List<Cars> GetFileFromJson()
         {
-
             return _iworkWithFile.ReturnListFromText(_name);
         }
     }

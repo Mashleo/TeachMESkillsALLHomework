@@ -9,24 +9,24 @@ namespace Homework2510.Models
     {
         public Cars(string _brand,string _type, int _cylinder, string _fuel)
         {
-            brand = _brand;
-            typeBody = _type;
-            engine = new Engine
+            Brand = _brand;
+            TypeBody = _type;
+            Engine = new Engine
             {
-                cylinder = _cylinder,
-                fuel = _fuel
-            };
-            
+                Cylinder = _cylinder,
+                Fuel = _fuel
+            };         
 
         }
-        public string brand { get; set; }
-        public string typeBody { get; set; }
-        public Engine engine { get; set; }
+        public string Brand { get; set; }
+        public string TypeBody { get; set; }
+        public Engine Engine { get; set; }
     }
+
     public class Engine
     {
-        public int cylinder  { get; set; }
-        public  string fuel  { get; set; }
+        public int Cylinder  { get; set; }
+        public  string Fuel  { get; set; }
 
     }
 }
