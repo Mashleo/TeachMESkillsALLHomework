@@ -1,4 +1,5 @@
 using Homework2510.Models;
+using Homework2510.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +40,7 @@ namespace Homework2510
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseOpenApi();
             app.UseSwaggerUi3(config =>
             {
