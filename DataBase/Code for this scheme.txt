@@ -1,0 +1,72 @@
+CREATE DATABASE TableHomeworkMusic;
+go
+use TableHomeworkMusic4;
+
+go
+Create Table Genres(
+	genre_id  varchar(300),
+	genre_name varchar(300)
+	CONSTRAINT PK_Genres Primary Key (genre_id)
+);
+
+go
+Create Table Countries(
+	countries_id  varchar(300),
+	country_name varchar(300)
+	CONSTRAINT PK_Countries Primary Key (countries_id)
+);
+go
+Create Table Artists(
+	artist_id  UNIQUEIDENTIFIER  DEFAULT NEWID(),
+	genre_id  varchar(300),
+	countries_id  varchar(300),
+	artist_site_url varchar(5000),
+	
+	CONSTRAINT PK_Artists Primary Key (artist_id),
+	FOREIGN KEY (genre_id) REFERENCES Genres(genre_id),
+	FOREIGN KEY (countries_id) REFERENCES Countries(countries_id),
+);
+go
+Create Table Groups(
+	artist_id   UNIQUEIDENTIFIER  DEFAULT NEWID(),
+	group_name varchar(300)
+	CONSTRAINT PK_Groups Primary Key (artist_id),
+	FOREIGN KEY (artist_id) REFERENCES Artists(artist_id)
+);
+
+go
+Create Table Persons(
+	artist_id   UNIQUEIDENTIFIER  DEFAULT NEWID(),
+	last_name varchar(300),
+	first_name varchar(300),
+	birthday date,
+CONSTRAINT PK_Persons Primary Key (artist_id),
+FOREIGN KEY (artist_id) REFERENCES Artists(artist_id),
+);
+go
+Create Table Songs(
+	song_id  int,
+	song_title varchar(300),
+	song_duration varchar(300),
+	CONSTRAINT PK_Songs Primary Key (song_id)
+);
+go
+Create Table Album_Songs(
+	album_id  int,
+	song_id  int,
+	track_number  int,	
+	CONSTRAINT PK_Album_Songs Primary Key (album_id),
+	FOREIGN KEY (song_id) REFERENCES Songs(song_id)
+);
+go
+Create Table Albums(
+	album_id  int,
+	artist_id   UNIQUEIDENTIFIER  DEFAULT NEWID(),
+	album_title varchar(300),
+	album_year date,
+	aibum_tracks varchar(300),
+	track_number  int,	
+	CONSTRAINT PK_Album Primary Key (artist_id),
+	FOREIGN KEY (album_id ) REFERENCES Album_Songs(album_id),
+	FOREIGN KEY (artist_id) REFERENCES Artists(artist_id),
+);
